@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       passwall2_version: ${{ steps.check_version.outputs.latest_version }}
-      has_update: ${{ steps.check_version.outputs.has_update }}
+      has_update: 'true' #${{ steps.check_version.outputs.has_update }}
     steps:
       - name: Checkout
         uses: actions/checkout@main
