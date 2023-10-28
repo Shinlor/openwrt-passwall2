@@ -302,12 +302,10 @@ jobs:
           touch release.txt
           echo "status=success" >> $GITHUB_OUTPUT
 
-      - name: Upload firmware to release
-        uses: softprops/action-gh-release@v1
-        if: steps.info.outputs.status == 'success'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Store packages
+        uses: actions/upload-artifact@v3
         with:
-          tag_name: ${{needs.job_check.outputs.passwall2_version}}
-          body_path: ${{ env.FIRMWARE }}/release.txt
-          files: ${{ env.FIRMWARE }}/upload/*
+          name: ${{env.ARCHIVE_NAME}}-packages
+          path: |
+            *.ipk
+            PKG-INFO
